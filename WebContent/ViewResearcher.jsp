@@ -20,6 +20,11 @@ The researcher profile that you have looked for is
 		<td><c:out value="${researcher.name}"/>
 		<td><c:out value="${researcher.affiliation}"/>
 	</tr>
+	<c:forEach items="${researcher.publications}" var="rsi">
+	<tr>
+	<td><c:out value="${rsi.title}"></c:out></td>
+	</tr>
+	</c:forEach>
 </table>
 </body>
 </html>

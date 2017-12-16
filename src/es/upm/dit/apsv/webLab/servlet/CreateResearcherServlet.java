@@ -11,18 +11,16 @@ import es.upm.dit.apsv.webLab.dao.ResearcherDAOImpl;
 import es.upm.dit.apsv.webLab.dao.model.Researcher;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class CreateResearcherServlet
  */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/CreateResearcherServlet")
+public class CreateResearcherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private  String admin = "root";
-	private  String adminPwd = "root";
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public CreateResearcherServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,23 +29,18 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	
-		String user = request.getParameter("user");
-		String pwd = request.getParameter("pwd");
-		ResearcherDAOImpl dao = ResearcherDAOImpl.getInstance();
-		Researcher researcher = dao.readName(new Researcher("0", user, "", "", pwd));
+		System.out.println("En el método get de create");
+		ResearcherDAO dao =  ResearcherDAOImpl.getInstance();
+		Researcher newReseacher = new Researcher((String)request.getParameter("id"),
+												 (String)request.getParameter("name"),
+												 (String)request.getParameter("email"),
+												 (String)request.getParameter("affiliation"),
+												 (String)request.getParameter("password"));
+		request.getSession().setAttribute("isCreated", true);
+		dao.create(newReseacher);
+		response.sendRedirect("RootView.jsp");
 		
-		if(admin.equals(user) && adminPwd.equals(pwd)) {
-			request.getSession().setAttribute("user", new Researcher("0", "root", "","", ""));
-			response.sendRedirect("RootView.jsp");
-		} else if (researcher != null && user.equals(researcher.getName()) && pwd.equals(researcher.getPassword())) {
-			request.getSession().setAttribute("user", researcher);
-			request.getSession().setAttribute("researcher", researcher);
-			response.sendRedirect("ViewProfile.jsp");
-		} else {
-			response.sendRedirect(request.getContextPath()+"/index.html");
-		}
+		// TODO Auto-generated method stub
 		
 	}
 

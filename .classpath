@@ -38,5 +38,8 @@
 			<attribute name="owner.project.facets" value="jpt.jpa"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/acer1/Desktop/Master/APSV/LibreriasEclipse/activemq-all-5.15.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/acer1/Desktop/Master/APSV/LibreriasEclipse/jms-api-1.1-rev-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/acer1/Desktop/Master/APSV/LibreriasEclipse/json-simple-1.1.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
